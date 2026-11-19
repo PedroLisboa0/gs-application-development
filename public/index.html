@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Registre problemas urbanos e acompanhe as ocorrências da comunidade."
+    />
+    <title>Cidade em Foco — problemas urbanos</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topo">
+      <div class="container topo-conteudo">
+        <a class="marca" href="/" aria-label="Cidade em Foco, página inicial">
+          <span class="marca-icone" aria-hidden="true">CF</span>
+          <span>Cidade em Foco</span>
+        </a>
+        <span class="ods">ODS 11 · Cidades sustentáveis</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="apresentacao" aria-labelledby="titulo-principal">
+        <p class="sobretitulo">Sua comunidade, mais visível</p>
+        <h1 id="titulo-principal">Pequenos registros ajudam a enxergar grandes problemas.</h1>
+        <p class="texto-intro">
+          Moradores podem registrar problemas urbanos para organizar relatos
+          sobre buracos, iluminação, resíduos e acessibilidade. A proposta é
+          reunir informações úteis para a comunidade e contribuir para cidades
+          mais inclusivas, seguras e sustentáveis.
+        </p>
+        <p id="aviso-modo" class="aviso-modo" hidden></p>
+      </section>
+
+      <section class="painel-indicadores" aria-label="Indicadores das ocorrências">
+        <article class="cartao-indicador indicador-total">
+          <span class="indicador-rotulo">Ocorrências registradas</span>
+          <strong id="total-ocorrencias" class="indicador-valor">—</strong>
+          <span class="indicador-nota">Total cadastrado pela comunidade</span>
+        </article>
+        <article class="cartao-indicador">
+          <h2 class="indicador-rotulo">Registros por categoria</h2>
+          <ul id="resumo-categorias" class="resumo-categorias" aria-live="polite">
+            <li>Carregando indicadores…</li>
+          </ul>
+        </article>
+      </section>
+
+      <div class="conteudo-principal">
+        <section class="cartao formulario-cartao" aria-labelledby="titulo-formulario">
+          <div class="secao-cabecalho">
+            <div>
+              <p class="sobretitulo">Participe</p>
+              <h2 id="titulo-formulario">Registrar uma ocorrência</h2>
+            </div>
+            <span class="etiqueta">Cadastro aberto</span>
+          </div>
+          <p class="texto-ajuda">
+            Informe o que aconteceu e onde. Não inclua dados pessoais na descrição.
+          </p>
+
+          <form id="form-ocorrencia">
+            <div class="campo">
+              <label for="categoria">Categoria <span aria-hidden="true">*</span></label>
+              <select id="categoria" name="categoria" required>
+                <option value="">Selecione uma categoria</option>
+                <option value="buraco">Buraco na via</option>
+                <option value="iluminacao">Iluminação pública</option>
+                <option value="residuos">Descarte de resíduos</option>
+                <option value="acessibilidade">Acessibilidade</option>
+                <option value="outro">Outro problema urbano</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="local">Bairro ou local <span aria-hidden="true">*</span></label>
+              <input
+                id="local"
+                name="local"
+                type="text"
+                maxlength="120"
+                placeholder="Ex.: Rua das Flores, Centro"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="descricao">Descrição <span aria-hidden="true">*</span></label>
+              <textarea
+                id="descricao"
+                name="descricao"
+                rows="4"
+                maxlength="500"
+                placeholder="Descreva o problema observado"
+                required
+              ></textarea>
+              <span class="contador">Até 500 caracteres</span>
+            </div>
+
+            <fieldset class="campo campo-prioridade">
+              <legend>Prioridade <span aria-hidden="true">*</span></legend>
+              <div class="opcoes-prioridade">
+                <label class="opcao-prioridade">
+                  <input type="radio" name="prioridade" value="baixa" required />
+                  <span>Baixa</span>
+                </label>
+                <label class="opcao-prioridade">
+                  <input type="radio" name="prioridade" value="media" />
+                  <span>Média</span>
+                </label>
+                <label class="opcao-prioridade">
+                  <input type="radio" name="prioridade" value="alta" />
+                  <span>Alta</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <button id="botao-enviar" class="botao-principal" type="submit">
+              Registrar ocorrência
+            </button>
+            <p id="mensagem-formulario" class="mensagem" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="cartao lista-cartao" aria-labelledby="titulo-lista">
+          <div class="secao-cabecalho">
+            <div>
+              <p class="sobretitulo">Acompanhe</p>
+              <h2 id="titulo-lista">Ocorrências recentes</h2>
+            </div>
+            <span id="quantidade-lista" class="etiqueta">Carregando</span>
+          </div>
+          <div id="mensagem-lista" class="estado-lista" role="status" aria-live="polite">
+            Buscando ocorrências…
+          </div>
+          <div id="lista-ocorrencias" class="lista-ocorrencias"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="rodape">
+      <div class="container">
+        Projeto acadêmico CitizenTech · ODS 11 — Cidades e Comunidades Sustentáveis
+      </div>
+    </footer>
+  </body>
+</html>
